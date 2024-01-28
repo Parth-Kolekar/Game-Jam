@@ -20,9 +20,9 @@ while True:
             exit()
 
     screen.blit(sky_surface,(0,0))
-    screen.blit(text_surface,(265,50))
+    screen.blit(text_surface,(295,50))
     hero_x_pos +=4
-    if hero_x_pos > 900: hero_x_pos = 0
+    if hero_x_pos > 900: hero_x_pos = 0    #hero runs to end and starts again
     screen.blit(hero_one,(hero_x_pos,300))
 
 
