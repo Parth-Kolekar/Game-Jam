@@ -6,11 +6,11 @@ screen=pygame.display.set_mode((800,500))
 pygame.display.set_caption('VSGP MARIO LITE')
 clock = pygame.time.Clock()
 test_font = pygame. font. Font('Font/ARCADECLASSIC.TTF',50) #small font - size:30 ,x=300
-                                                                       # large font - size:50 ,x=295
-sky_surface = pygame.image.load('Graphics/gb3.jpg').convert()
-text_surface = test_font.render('Lord Gaurav',False,"cyan")
+                                                                       # large font - size:50 ,x=265
+sky_surface = pygame.image.load('Graphics/Battleground3Resize.jpg').convert()
+text_surface = test_font.render('Game Jam',False,"cyan")
 
-hero_one = pygame.image.load('Graphics/Sprites/he2.jpg').convert_alpha() # hero size 50 x70
+hero_one = pygame.image.load('Graphics/Sprites/run5.png').convert_alpha() # hero size 50 x70
 hero_x_pos =0
 
 while True:
