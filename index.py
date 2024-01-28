@@ -10,6 +10,8 @@ test_font = pygame. font. Font('Font/ARCADECLASSIC.TTF',50) #small font - size:3
 sky_surface = pygame.image.load('Graphics/gb3.jpg')
 text_surface = test_font.render('Lord Gaurav',False,"cyan")
 
+#hero_one = pygame.image.load('Graphics/Sprites/bird.piskel')
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -18,6 +20,9 @@ while True:
 
     screen.blit(sky_surface,(0,0))
     screen.blit(text_surface,(265,50))
+   # screen.blit(hero_one,(0,0))
+
+
     #draw all our elements
     #update every fucking thing
     pygame.display.update()
