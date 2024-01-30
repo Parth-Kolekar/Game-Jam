@@ -25,7 +25,7 @@ while True:
     if hero_x_pos > 900: hero_x_pos = 0    #hero runs to end and starts again
     screen.blit(hero_one,(hero_x_pos,300))
 
-
+    #I am here
     #draw all our elements
     #update every fucking thing
     pygame.display.update()
