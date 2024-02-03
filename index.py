@@ -1,6 +1,6 @@
 import pygame
 import sys
-
+               #THIS WAS TRIAL WINDOW
 pygame.init()
 screen=pygame.display.set_mode((800,500))
 pygame.display.set_caption('VSGP MARIO LITE')
