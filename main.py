@@ -1,5 +1,5 @@
 import pygame,sys
-from level import *
+from setting import *
 from tiles import Tile
 
 #pygame set up
