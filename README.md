@@ -28,7 +28,7 @@ Our project, "Game Jam" is a platformer game developed using the Pygame library 
     ```
 3. Run the game:
     ```bash
-    cd game-jam
+    cd Game-Jam
     python main.py
     ```
 
