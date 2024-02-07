@@ -7,7 +7,7 @@
 - Vedaant Nichal
 
 ## Overview:
-This project is part of our first year engineering course in Project-Based Learning (PBL), which is a part of the Savitribai Phule Pune University (SPPU) 2019 Pattern. Our team has collaborated to create a platformer game using Pygame and Python.
+This project is part of our first year engineering course in Project-Based Learning (PBL), which is a part of the Savitribai Phule Pune University (SPPU) 2019 Pattern. Our team has collaborated to create a platformer game using Pygame in Python.
 
 ## Description:
 Our project, "Game Jam" is a platformer game developed using the Pygame library in Python. In this game, players navigate through various levels filled with obstacles, enemies, and challenges. The objective is to reach the end of each level while overcoming obstacles and defeating enemies along the way.
