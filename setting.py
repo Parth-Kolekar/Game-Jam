@@ -4,12 +4,12 @@ level_map = [
     '                               ',
     'XX      XX                  XXX',
     'XXXXX        XXXXX     XXX     ',
-    'XXXXXXX     XXXXXX    XXXXX    ',
+    'XXXXXX      XXXXXX    XXXXX    ',
     'XXXX                           ',
     'XX     X           XXX         ',
-    '      XX    XXXX        XXX    ',
-    '   XXXXX    XXXXXXX     XXX    ',
-    'XXXXXXXX    XXXXXXX     XXXXX  ',]
+    '      XX   XXXXX        XXX    ',
+    ' P XXXXX   XXXXXXXX     XXX    ',
+    'XXXXXXXX   XXXXXXXX     XXXXX  ',]
     #012345678901234567890123456789
 
 
