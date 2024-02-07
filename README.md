@@ -1,4 +1,4 @@
-# 🎮 Game Jam: A Platformer Game Development Project🎮
+# 🎮 Game Jam: A Platformer Game Development Project
 
 ## 👥 Participants:
 - Gaurav Mohagaonkar
