@@ -38,10 +38,14 @@ Our project, "Game Jam" is a platformer game developed using the Pygame library 
 - Avoid obstacles and defeat enemies to progress through the levels.
 
 ## 🌐 Sources:
-- Sprite: CraftPix - [craftpix.net](https://craftpix.net/freebies/assassin-mage-viking-free-pixel-art-game-heroes/?num=1&count=9&sq=viking&pos=7)
+- Sprites: CraftPix - [craftpix.net](https://craftpix.net/freebies/assassin-mage-viking-free-pixel-art-game-heroes/?num=1&count=9&sq=viking&pos=7)
+
+- Library: Pygame - [pygame.org](https://pygame.org)
   
 ## 📜 Licenses:
 - For licensing information regarding CraftPix assets, please visit [CraftPix File Licenses](https://craftpix.net/file-licenses/).
+
+- Pygame is distributed under the GNU Lesser General Public License (LGPL) version 2.1 or later. [License Information](https://www.pygame.org/docs/LGPL.txt)
 
 ## 📧 Contact:
 For inquiries or feedback, please contact us:
