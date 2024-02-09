@@ -45,6 +45,8 @@ Our project, "Game Jam" is a platformer game developed using the Pygame library 
 ## 📜 Licenses:
 - For licensing information regarding CraftPix assets, please visit [CraftPix File Licenses](https://craftpix.net/file-licenses/).
 
+- Pygame is distributed under the GNU Lesser General Public License (LGPL) version 2.1 or later. [License Information](https://www.pygame.org/docs/LGPL.txt)
+
 ## 📧 Contact:
 For inquiries or feedback, please contact us:
 - Email: parthkolekar9@gmail.com
