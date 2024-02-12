@@ -1,6 +1,6 @@
 import pygame
 from tiles import Tile
-from setting import tile_size, screen_width
+from settings import tile_size, screen_width
 from player import Player
 
 class Level:
@@ -11,11 +11,11 @@ class Level:
         self.world_shift = 0
 
     def setup_level(self,layout):
-        self.tiles =pygame.sprite.Group()
+        self.tiles = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
 
-        for row_index,row in enumerate(layout):
-            for col_index,cell in enumerate(row):
+        for row_index, row in enumerate(layout):
+            for col_index, cell in enumerate(row):
                 x = col_index * tile_size
                 y = row_index * tile_size
 
@@ -30,13 +30,13 @@ class Level:
 
     def horizontal_mov_col(self):
         player = self.player.sprite
-        player.rect.x +=player.direction.x * player.speed
+        player.rect.x += player.direction.x * player.speed
 
         for sprite in self.tiles.sprites():
             if sprite.rect.colliderect(player.rect):
                 if player.direction.x < 0:
                     player.rect.left = sprite.rect.right
-                elif player.direction.x >0:
+                elif player.direction.x > 0:
                     player.rect.right = sprite.rect.left
 
     def vertical_mov_col(self):
@@ -52,8 +52,6 @@ class Level:
                     player.rect.top = sprite.rect.bottom
                     player.direction.y = 0
 
-
-
     def scroll_x(self):
         player = self.player.sprite
         player_x = player.rect.centerx
@@ -68,6 +66,7 @@ class Level:
         else:
             self.world_shift = 0
             player.speed = 8
+
     def run(self):
         #level tile
         self.tiles.update( self.world_shift)
