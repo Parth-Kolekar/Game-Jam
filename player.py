@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2(0,0)
         self.speed = 4
         self.gravity = 0.98
-        self.jump_speed = -14
+        self.jump_speed = -12
     
     def import_character_assets(self):
         character_path = 'graphics/PNG/Knight/'
