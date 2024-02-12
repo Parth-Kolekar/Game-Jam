@@ -19,20 +19,20 @@ Our project, "Game Jam" is a platformer game developed using the Pygame library 
 
 ## 🛠️ Installation:
 ### Step 1: Download and Install Python
-If you haven't already, download and install Python from the official website: [Python Downloads](https://www.python.org/downloads/)
+- If you haven't already, download and install Python from the official website: [Python Downloads](https://www.python.org/downloads/)
 
 ### Step 2: Install Pygame
-Open a command prompt (cmd) or terminal and execute the following command to install Pygame using pip:
+- Open a command prompt (cmd) or terminal window and execute the following command to install Pygame using pip:
 ```bash
 pip install pygame
 ```
 ### Step 3: Download the Code
-Download the "Game-Jam.zip" containing the game files from this repository.
+- Download the "Game-Jam.zip" containing the game files from this repository.
 
 ### Step 4: Run the Game
-1. Navigate to the "Game-Jam" folder and open command prompt (cmd) or terminal.
-2. Run the game by executing the following command:
-```bash
+- Navigate to the "Game-Jam" folder and open command prompt (cmd) or terminal.
+- Run the game by executing the following command:
+ ```bash
 python main.py
 ```
 
