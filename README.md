@@ -32,10 +32,11 @@ Our project, "Game Jam" is a platformer game developed using the Pygame library 
     python main.py
     ```
 
-## 🖥️ Usage:
-- Use the arrow keys to move the player character.
-- Press the spacebar to jump.
+## 🖥️ Usage:             
+- Use the `←` `→` arrow keys to move the player character.
+- Press the `Spacebar` to jump.
 - Avoid obstacles and defeat enemies to progress through the levels.
+- Press `Esc` to quit.
 
 ## 🌐 Sources:
 - Sprites: CraftPix - [craftpix.net](https://craftpix.net/freebies/assassin-mage-viking-free-pixel-art-game-heroes/?num=1&count=9&sq=viking&pos=7)
