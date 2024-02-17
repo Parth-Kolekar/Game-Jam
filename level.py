@@ -26,7 +26,7 @@ class Level:
                 if cell == 'P':
                     x = col_index * tile_size
                     y = row_index * tile_size
-                    player_sprite = Player((x, y + 8))  # Adjust y to make player spawn on tile
+                    player_sprite = Player((x, y + 8))  # Adjust y + value to make player spawn on tile
                     self.player.add(player_sprite)
 
     def horizontal_mov_col(self):
@@ -77,7 +77,7 @@ class Level:
         if player_x < screen_width/2 and direction_x < 0:
             self.world_shift = 8
             player.speed = 0
-        elif player_x > screen_width - (screen_width/2) and direction_x > 0:
+        elif player_x > screen_width/2 and direction_x > 0:
             self.world_shift = -8
             player.speed = 0
         else:
