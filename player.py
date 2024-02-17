@@ -79,7 +79,7 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_ESCAPE]: #press escape to quit, added on my own (not in tutorial)
             pygame.quit()
             sys.exit()
-
+        
     def get_status(self):
         if self.direction.y < 0:
             self.status = 'jump'

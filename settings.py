@@ -6,9 +6,9 @@ level_map = [
     'XXXXXX      XXXXXX     XXX                                     ',
     'XXXX                  XXXXX                                    ',
     'XX                                                             ',
-    '                                                               ',
+    '     P                                                         ',
     '    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ',
-    ' P XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ',
+    '   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ',
     'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ',]
     #012345678901234567890123456789#
 

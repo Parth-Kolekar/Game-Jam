@@ -11,7 +11,7 @@ class Level:
         self.world_shift = 0
         self.current_x = 0
 
-    def setup_level(self,layout):
+    def setup_level(self, layout):
         self.tiles = pygame.sprite.Group()
         self.player = pygame.sprite.GroupSingle()
 
@@ -21,13 +21,13 @@ class Level:
                 y = row_index * tile_size
 
                 if cell == 'X':
-                    tile = Tile((x,y),tile_size)
+                    tile = Tile((x,y), tile_size)
                     self.tiles.add(tile)
                 if cell == 'P':
                     x = col_index * tile_size
                     y = row_index * tile_size
-                    player_sprite = Player((x,y))
-                    self.player.add(player_sprite)  
+                    player_sprite = Player((x, y + 8))  # Adjust y to make player spawn on tile
+                    self.player.add(player_sprite)
 
     def horizontal_mov_col(self):
         player = self.player.sprite
