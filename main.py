@@ -8,7 +8,7 @@ pygame.init()
 pygame.display.set_caption('Game Jam') #added on my own
 
 #remove ",pygame.FULLSCREEN" for windowed mode and change screen values to original in settings.py
-screen = pygame.display.set_mode((screen_width,screen_height) ,pygame.FULLSCREEN) 
+screen = pygame.display.set_mode((screen_width,screen_height))
 
 clock = pygame.time.Clock()
 level = Level(level_map,screen)
