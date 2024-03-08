@@ -8,7 +8,7 @@ pygame.init()
 pygame.display.set_caption('Game Jam')
 
 #add ",pygame.FULLSCREEN" for fullscreen mode
-screen = pygame.display.set_mode((screen_width,screen_height))
+screen = pygame.display.set_mode((screen_width,screen_height),pygame.FULLSCREEN)
 
 background_img = pygame.image.load('graphics/background/windrise-background-4k.png').convert()
 scaled_background = pygame.transform.scale(background_img, (screen_width, screen_height))
