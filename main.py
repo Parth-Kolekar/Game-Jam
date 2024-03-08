@@ -1,24 +1,27 @@
 import pygame, sys
 from settings import *
-from tiles import Tile
 from level import Level
+from game_data import level_0
 
 #pygame set up
 pygame.init()
-pygame.display.set_caption('Game Jam') #added on my own
+pygame.display.set_caption('Game Jam')
 
-#remove ",pygame.FULLSCREEN" for windowed mode and change screen values to original in settings.py
+#add ",pygame.FULLSCREEN" for fullscreen mode
 screen = pygame.display.set_mode((screen_width,screen_height))
 
+background_img = pygame.image.load('graphics/background/windrise-background-4k.png').convert()
+scaled_background = pygame.transform.scale(background_img, (screen_width, screen_height))
+
 clock = pygame.time.Clock()
-level = Level(level_map,screen)
+level = Level(level_0, screen)
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-    screen.fill('sky blue')
+    screen.blit(scaled_background,(0,0))
     level.run()
 
     pygame.display.update()
