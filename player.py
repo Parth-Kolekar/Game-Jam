@@ -2,7 +2,7 @@ import pygame, sys
 from support import import_folder
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self,pos):
+    def __init__(self,pos, surface):
         super().__init__()
         self.import_character_assets()
         self.frame_index = 0
@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2(0,0)
         self.speed = 4
         self.gravity = 0.8
-        self.jump_speed = -20
+        self.jump_speed = -17
 
         #player status
         self.status = 'idle'
@@ -25,7 +25,7 @@ class Player(pygame.sprite.Sprite):
         self.on_right = False
    
     def import_character_assets(self):
-        character_path = 'graphics/PNG/Knight/'
+        character_path = 'graphics/entities/Knight/'
         self.animations = {'idle':[],'run':[],'jump':[],'fall':[]}
 
         for animation in self.animations.keys():
@@ -76,7 +76,7 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_SPACE] and self.on_ground:
             self.jump()
 
-        if keys[pygame.K_ESCAPE]: #press escape to quit, added on my own (not in tutorial)
+        if keys[pygame.K_ESCAPE]:
             pygame.quit()
             sys.exit()
         
@@ -102,5 +102,3 @@ class Player(pygame.sprite.Sprite):
         self.get_input()
         self.get_status()
         self.animate()
-
-
