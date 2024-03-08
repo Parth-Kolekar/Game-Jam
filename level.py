@@ -27,11 +27,11 @@ class Level:
         decorations_layout = import_csv_layout(level_data['decorations'])
         self.decoration_sprites = self.create_tile_group(decorations_layout, 'decorations')
 
-        #enemy
+        #enemy setup
         enemy_layout = import_csv_layout(level_data['enemies'])
         self.enemy_sprites = self.create_tile_group(enemy_layout, 'enemies')
 
-        #constraints
+        #constraints setup
         constraints_layout = import_csv_layout(level_data['constraints'])
         self.constraint_sprites = self.create_tile_group(constraints_layout, 'constraints')
 
