@@ -13,7 +13,7 @@ screen = pygame.display.set_mode((screen_width,screen_height), pygame.FULLSCREEN
 background_img = pygame.image.load('graphics/background/layers/grassy_mountain_combined.png').convert()
 scaled_background = pygame.transform.scale(background_img, (screen_width, screen_height))
 
-#### Unused code for scrolling parallax backgorund #########################
+'''############ Unused code for scrolling parallax backgorund ###############
 bg_images = []
 for i in range (1,6):
     bg_image = pygame.image.load(f"graphics/background/glacial_mountain/bg_layer_{i}.png").convert_alpha()
@@ -28,7 +28,7 @@ def draw_bg(bg_scroll):
         for i in bg_images:
             screen.blit(i, ((x * bg_width) - bg_scroll * speed ,0))
             speed += 0.5
-############################################################################
+############################################################################'''
             
 clock = pygame.time.Clock()
 level = Level(level_0, screen)
