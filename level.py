@@ -76,8 +76,8 @@ class Level:
                         sprite = Player((x, y), self.display_surface)
                         self.player.add(sprite) 
                     if val == '0':
-                        hat_surface = pygame.image.load('graphics/entities/Rogue/Death/death7.png').convert_alpha()
-                        sprite = StaticTile(tile_size, x, y, hat_surface)
+                        flag_surface = pygame.image.load('graphics/tiles/end_flag.png')
+                        sprite = StaticTile(tile_size, x, y, flag_surface)
                         self.goal.add(sprite)
                     
     def enemy_collision_reverse(self):
