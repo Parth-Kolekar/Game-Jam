@@ -5,7 +5,7 @@ from overworld import Overworld
 
 class Game:
     def __init__(self):
-        self.max_level = 0
+        self.max_level = 1
         self.overworld = Overworld(0, self.max_level, screen, self.create_level)
         self.status = 'overworld'
 
