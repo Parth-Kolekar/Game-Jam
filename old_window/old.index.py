@@ -1,12 +1,16 @@
 import pygame
 import sys
-               #THIS WAS TRIAL WINDOW
+
+#THIS WAS TRIAL WINDOW
 pygame.init()
+
 screen=pygame.display.set_mode((1600,900))
+
 pygame.display.set_caption('TRIAL WINDOW')
+
 clock = pygame.time.Clock()
-test_font = pygame. font. Font('old_window/Font/ARCADECLASSIC.TTF',100) #small font - size:30 ,x=300
-                                                                       # large font - size:50 ,x=295
+
+test_font = pygame. font. Font('old_window/Font/ARCADECLASSIC.TTF',100) #small font - size:30 ,x=300  #large font - size:50 ,x=295                                 
 sky_surface = pygame.image.load('old_window/Assets/Battleground3.png').convert()
 text_surface = test_font.render('Game Jam',False,"cyan")
 

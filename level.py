@@ -1,39 +1,51 @@
 import pygame
 from tiles import Tile, StaticTile
-from settings import tile_size, screen_width
+from settings import tile_size, screen_width, screen_height
 from player import Player
 from support import import_csv_layout, import_cut_graphics
 from enemy import Enemy
+from game_data import levels
 
 class Level:
-    def __init__(self,level_data,surface):
-        #level setup
+    def __init__(self, current_level, surface, create_overworld):
+        # General setup
         self.display_surface = surface
-        self.setup_level(level_data)
         self.world_shift = 0
         self.current_x = None
-
-        #player
+        
+        # Overworld connection
+        self.create_overworld = create_overworld
+        self.current_level = current_level
+        level_data = levels[self.current_level]
+        self.new_max_level = level_data['unlock']
+        
+        # Player
         player_layout = import_csv_layout(level_data['player'])
         self.player = pygame.sprite.GroupSingle()
         self.goal = pygame.sprite.GroupSingle()
         self.player_setup(player_layout)
 
-        #terrain setup
+        # Terrain setup
         terrain_layout = import_csv_layout(level_data['terrain'])
         self.terrain_sprites = self.create_tile_group(terrain_layout, 'terrain')
 
-        #decorations setup
+        # Decorations setup
         decorations_layout = import_csv_layout(level_data['decorations'])
         self.decoration_sprites = self.create_tile_group(decorations_layout, 'decorations')
 
-        #enemy setup
+        # Enemy setup
         enemy_layout = import_csv_layout(level_data['enemies'])
         self.enemy_sprites = self.create_tile_group(enemy_layout, 'enemies')
 
-        #constraints setup
+        # Constraints setup
         constraints_layout = import_csv_layout(level_data['constraints'])
         self.constraint_sprites = self.create_tile_group(constraints_layout, 'constraints')
+
+    def exit_level(self):
+        keys = pygame.key.get_pressed()
+        
+        if keys[pygame.K_BACKSPACE]:
+            self.create_overworld(self.current_level, 0)
 
     def create_tile_group(self, layout, type):
         sprite_group = pygame.sprite.Group()    
@@ -48,13 +60,11 @@ class Level:
                         terrain_tile_list = import_cut_graphics('graphics/tiles/ground_tilesheet.png')
                         tile_surface = terrain_tile_list[int(val)]
                         sprite = StaticTile(tile_size, x, y, tile_surface)
-                        #sprite_group.add(sprite)
 
                     if type == 'decorations':
                         decorations_tile_list = import_cut_graphics('graphics/tiles/decorations_tilesheet.png')
                         tile_surface = decorations_tile_list[int(val)]
                         sprite = StaticTile(tile_size, x, y, tile_surface)
-                        #sprite_group.add(sprite)
 
                     if type == 'enemies':
                         sprite = Enemy(tile_size, x, y)
@@ -100,7 +110,7 @@ class Level:
                 if cell == 'P':
                     x = col_index * tile_size
                     y = row_index * tile_size
-                    player_sprite = Player((x, y))  # Adjust y + value to make player spawn on tile
+                    player_sprite = Player((x, y))
                     self.player.add(player_sprite)
 
     def horizontal_mov_col(self):
@@ -158,22 +168,30 @@ class Level:
             self.world_shift = 0
             player.speed = 8
 
+    def check_death(self):
+        if self.player.sprite.rect.top > screen_height:
+            self.create_overworld(self.current_level, 0)
+
+    def check_win(self):
+        if pygame.sprite.spritecollide(self.player.sprite, self.goal, False):
+            self.create_overworld(self.current_level, self.new_max_level)
+
     def run(self):
-        #decorations
+        # Decorations
         self.decoration_sprites.update(self.world_shift)
         self.decoration_sprites.draw(self.display_surface)
 
-        #terrain
+        # Terrain
         self.terrain_sprites.update(self.world_shift)
         self.terrain_sprites.draw(self.display_surface)
 
-        #enemy
+        # Enemy
         self.enemy_sprites.update(self.world_shift)
         self.constraint_sprites.update(self.world_shift)
         self.enemy_collision_reverse()
         self.enemy_sprites.draw(self.display_surface)
         
-        #player sprites
+        # Player sprites
         self.player.draw(self.display_surface)
         self.player.update()
         self.horizontal_mov_col()
@@ -181,3 +199,9 @@ class Level:
         self.scroll_x()
         self.goal.update(self.world_shift)
         self.goal.draw(self.display_surface)
+
+        # Win Loss
+        self.check_death()
+        self.check_win()
+
+        self.exit_level()
