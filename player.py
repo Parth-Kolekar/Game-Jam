@@ -34,11 +34,11 @@ class Player(pygame.sprite.Sprite):
 
     def animate(self):
         animations = self.animations[self.status]
-        #loop over the frame index
+        # Loop over the frame index
         self.frame_index += self.animation_speed
         if self.frame_index >= len(animations):
             self.frame_index = 0
-
+            
         image = animations[int(self.frame_index)]
 
         if self.facing_right:
@@ -47,7 +47,7 @@ class Player(pygame.sprite.Sprite):
             flipped_image = pygame.transform.flip(image,True,False)
             self.image = flipped_image
 
-        #set the rectangle
+        # Set the rectangle
         if self.on_ground and self.on_right:
             self.rect = self.image.get_rect(bottomright = self.rect.bottomright)
         elif self.on_ground and self.on_left:
@@ -76,10 +76,6 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_SPACE] and self.on_ground:
             self.jump()
 
-        if keys[pygame.K_ESCAPE]:
-            pygame.quit()
-            sys.exit()
-        
     def get_status(self):
         if self.direction.y < 0:
             self.status = 'jump'
