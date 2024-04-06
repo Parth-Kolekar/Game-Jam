@@ -13,6 +13,16 @@ class Level:
         self.display_surface = surface
         self.world_shift = 0
         self.current_x = None
+
+        # Audio
+        self.stomp_sound = pygame.mixer.Sound('audio/effects/stomp.mp3')
+        self.stomp_sound.set_volume(0.4)
+
+        self.win_sound = pygame.mixer.Sound('audio/effects/win.wav')
+        self.win_sound.set_volume(0.3)
+
+        self.lose_sound = pygame.mixer.Sound('audio/effects/lose.wav')
+        self.lose_sound.set_volume(0.3)
         
         # Overworld connection
         self.create_overworld = create_overworld
@@ -119,43 +129,43 @@ class Level:
 
     def horizontal_mov_col(self):
         player = self.player.sprite
-        player.rect.x += player.direction.x * player.speed
+        player.collision_rect.x += player.direction.x * player.speed
 
         for sprite in self.terrain_sprites.sprites():
-            if sprite.rect.colliderect(player.rect):
+            if sprite.rect.colliderect(player.collision_rect):
                 if player.direction.x < 0:
-                    player.rect.left = sprite.rect.right
+                    player.collision_rect.left = sprite.rect.right
                     player.on_left = True
                     self.current_x = player.rect.left
                 elif player.direction.x > 0:
-                    player.rect.right = sprite.rect.left
+                    player.collision_rect.right = sprite.rect.left
                     player.on_right = True
                     self.current_x = player.rect.right
 
-        if player.on_left and (player.rect.left < self.current_x or player.direction.x >= 0):
+        '''if player.on_left and (player.rect.left < self.current_x or player.direction.x >= 0):
             player.on_left = False
         if player.on_right and (player.rect.right > self.current_x or player.direction.x <= 0):
-            player.on_right = False
+            player.on_right = False'''
 
     def vertical_mov_col(self):
         player = self.player.sprite
         player.apply_gravity()
 
         for sprite in self.terrain_sprites.sprites():
-            if sprite.rect.colliderect(player.rect):
+            if sprite.rect.colliderect(player.collision_rect):
                 if player.direction.y > 0:
-                    player.rect.bottom = sprite.rect.top
+                    player.collision_rect.bottom = sprite.rect.top
                     player.direction.y = 0
                     player.on_ground = True
                 elif player.direction.y < 0:
-                    player.rect.top = sprite.rect.bottom
+                    player.collision_rect.top = sprite.rect.bottom
                     player.direction.y = 0
                     player.on_ceiling = True
 
         if player.on_ground and player.direction.y < 0 or player.direction.y > 1:
             player.on_ground = False
-        if player.on_ceiling and player.direction.y > 0.1:
-            player.on_ceiling = False
+        '''if player.on_ceiling and player.direction.y > 0.1:
+            player.on_ceiling = False'''
 
     def scroll_x(self):
         player = self.player.sprite
@@ -174,11 +184,15 @@ class Level:
 
     def check_void_fall(self):
         if self.player.sprite.rect.top > screen_height:
+            pygame.mixer.stop()
+            self.lose_sound.play()
             self.create_overworld(self.current_level, 0)
 
     def check_win(self):
         if pygame.sprite.spritecollide(self.player.sprite, self.goal, False):
-            self.create_overworld(self.current_level, self.new_max_level)
+            pygame.mixer.stop()  # Stop all currently playing sounds
+            self.win_sound.play()
+            self.create_overworld(self.current_level, self.new_max_level)            
 
     def check_enemy_col(self):
         enemy_collisions = pygame.sprite.spritecollide(self.player.sprite, self.enemy_sprites, False)
@@ -189,6 +203,7 @@ class Level:
                 enemy_top = enemy.rect.top
                 player_bottom = self.player.sprite.rect.bottom
                 if enemy_top < player_bottom < enemy_center and self.player.sprite.direction.y >= 0:
+                    self.stomp_sound.play()
                     self.player.sprite.direction.y = -15
                     enemy_death_sprite = ParticleEffect(enemy.rect.center, 'enemy_death', enemy.speed)
                     self.enemy_death_sprites.add(enemy_death_sprite)
@@ -223,7 +238,7 @@ class Level:
         self.horizontal_mov_col()
         self.vertical_mov_col()
         self.scroll_x()
-        
+
         # Previously end flag was placed here
 
         # Win Loss

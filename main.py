@@ -12,9 +12,20 @@ class Game:
         self.max_health = 100
         self.current_health = 100
 
+        # Audio
+        self.level_bg_music = pygame.mixer.Sound('audio/music/level_music.mp3')
+        self.level_bg_music.set_volume(0.5)
+
+        self.overworld_bg_music = pygame.mixer.Sound('audio/music/overworld_music.mp3')
+        self.overworld_bg_music.set_volume(0.5)
+
+        self.lose_sound = pygame.mixer.Sound('audio/effects/lose.wav')
+        self.lose_sound.set_volume(0.3)
+
         # Overworld creation
         self.overworld = Overworld(0, self.max_level, screen, self.create_level)
         self.status = 'overworld'
+        self.overworld_bg_music.play(loops = -1)
 
         # User interface
         self.ui = UI(screen)
@@ -23,12 +34,16 @@ class Game:
         self.level = Level(current_level, screen, self.create_overworld, self.change_health)
         self.current_health = 100
         self.status = 'level'
+        self.overworld_bg_music.stop()
+        self.level_bg_music.play(loops = -1)
         
     def create_overworld(self, current_level, new_max_level):
         if new_max_level > self.max_level:
             self.max_level = new_max_level
         self.overworld = Overworld(current_level, self.max_level, screen, self.create_level)
         self.status = 'overworld'
+        self.level_bg_music.stop()
+        self.overworld_bg_music.play(loops = -1)
 
     def change_health(self, amount):
         self.current_health += amount
@@ -38,6 +53,10 @@ class Game:
             self.current_health = 100
             self.overworld = Overworld(0, self.max_level, screen, self.create_level)
             self.status = 'overworld'
+            pygame.mixer.stop()
+            self.lose_sound.play()
+            self.level_bg_music.stop()
+            self.overworld_bg_music.play(loops = -1)
 
     def run(self):
         if self.status == 'overworld':
@@ -57,6 +76,9 @@ screen = pygame.display.set_mode((screen_width,screen_height))
 # Loading and scaling the background image
 background_img = pygame.image.load('graphics/background/layers/grassy_mountain_combined.png').convert_alpha()
 scaled_background = pygame.transform.scale(background_img, (screen_width, screen_height))
+
+# Hide the mouse cursor
+pygame.mouse.set_visible(False)
 
 # Initialize the clock
 clock = pygame.time.Clock()

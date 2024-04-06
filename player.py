@@ -16,6 +16,7 @@ class Player(pygame.sprite.Sprite):
         self.speed = 4
         self.gravity = 0.8
         self.jump_speed = -16
+        self.collision_rect = pygame.Rect(self.rect.topleft, (42, self.rect.height)) #
 
         # Player status
         self.status = 'idle'
@@ -30,6 +31,12 @@ class Player(pygame.sprite.Sprite):
         self.invincible = False
         self.invincibility_duration = 500
         self.hurt_time = 0
+
+        # Audio
+        self.jump_sound = pygame.mixer.Sound('audio/effects/jump.wav')
+        self.jump_sound.set_volume(0.08)
+
+        self.hurt_sound = pygame.mixer.Sound('audio/effects/hurt.mp3')
    
     def import_character_assets(self):
         character_path = 'graphics/entities/Knight/'
@@ -50,9 +57,11 @@ class Player(pygame.sprite.Sprite):
 
         if self.facing_right:
             self.image = image
+            self.rect.bottomleft = self.collision_rect.bottomleft #
         else:
             flipped_image = pygame.transform.flip(image,True,False)
             self.image = flipped_image
+            self.rect.bottomright = self.collision_rect.bottomright #
 
         if self.invincible:
             alpha = self.sine_wave_value()
@@ -60,7 +69,9 @@ class Player(pygame.sprite.Sprite):
         else:
             self.image.set_alpha(255)
 
-        # Set the rectangle
+        self.rect = self.image.get_rect(midbottom = self.rect.midbottom)
+
+        ''''# Set the rectangle
         if self.on_ground and self.on_right:
             self.rect = self.image.get_rect(bottomright = self.rect.bottomright)
         elif self.on_ground and self.on_left:
@@ -72,7 +83,7 @@ class Player(pygame.sprite.Sprite):
         elif self.on_ceiling and self.on_left:
             self.rect = self.image.get_rect(topleft = self.rect.topleft)
         elif self.on_ceiling:
-            self.rect = self.image.get_rect(midtop = self.rect.midtop)
+            self.rect = self.image.get_rect(midtop = self.rect.midtop)'''
 
     def get_input(self):
         keys = pygame.key.get_pressed()
@@ -102,13 +113,15 @@ class Player(pygame.sprite.Sprite):
 
     def apply_gravity(self):
         self.direction.y += self.gravity
-        self.rect.y += self.direction.y
+        self.collision_rect.y += self.direction.y
 
     def jump(self):
         self.direction.y = self.jump_speed
+        self.jump_sound.play()
 
     def get_damage(self):
         if not self.invincible:
+            self.hurt_sound.play()
             self.change_health(-20)
             self.invincible = True
             self.hurt_time = pygame.time.get_ticks()
