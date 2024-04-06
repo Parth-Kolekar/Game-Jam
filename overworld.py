@@ -15,6 +15,7 @@ class Node(pygame.sprite.Sprite):
 
     def update(self):
         if not self.status == 'available':
+            
             tint_surf = self.image.copy()
             tint_surf.fill('black', None, pygame.BLEND_RGB_MULT)
             self.image.blit(tint_surf, (0,0))
