@@ -6,6 +6,7 @@ class Node(pygame.sprite.Sprite):
     def __init__(self, pos, status, node_graphics):
         super().__init__()
         self.image = pygame.image.load(node_graphics).convert_alpha()
+        self.lock_image = pygame.image.load('graphics/overworld/lock.png').convert_alpha()
         if status == 'available':
             self.status = 'available'
         else:
@@ -17,6 +18,11 @@ class Node(pygame.sprite.Sprite):
             tint_surf = self.image.copy()
             tint_surf.fill('black', None, pygame.BLEND_RGB_MULT)
             self.image.blit(tint_surf, (0,0))
+
+            horizontal_offset = (self.image.get_width() - self.lock_image.get_width()) // 2
+            vertical_offset = (self.image.get_height() - self.lock_image.get_height()) // 2 + 25
+            lock_offset = (horizontal_offset, vertical_offset)
+            self.image.blit(self.lock_image, lock_offset)
 
 class Icon(pygame.sprite.Sprite):
     def __init__(self, pos):
