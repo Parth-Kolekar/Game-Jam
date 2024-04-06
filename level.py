@@ -201,6 +201,10 @@ class Level:
         self.decoration_sprites.update(self.world_shift)
         self.decoration_sprites.draw(self.display_surface)
 
+        # End Flag
+        self.goal.update(self.world_shift)
+        self.goal.draw(self.display_surface)
+
         # Terrain
         self.terrain_sprites.update(self.world_shift)
         self.terrain_sprites.draw(self.display_surface)
@@ -219,8 +223,8 @@ class Level:
         self.horizontal_mov_col()
         self.vertical_mov_col()
         self.scroll_x()
-        self.goal.update(self.world_shift)
-        self.goal.draw(self.display_surface)
+        
+        # Previously end flag was placed here
 
         # Win Loss
         self.check_void_fall()
