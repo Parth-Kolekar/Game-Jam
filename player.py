@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite):
         self.speed = 4
         self.gravity = 0.8
         self.jump_speed = -16
-        self.collision_rect = pygame.Rect(self.rect.topleft, (42, self.rect.height)) #
+        self.collision_rect = pygame.Rect(self.rect.topleft, (42, self.rect.height)) # new collisions
 
         # Player status
         self.status = 'idle'
@@ -57,11 +57,11 @@ class Player(pygame.sprite.Sprite):
 
         if self.facing_right:
             self.image = image
-            self.rect.bottomleft = self.collision_rect.bottomleft #
+            self.rect.bottomleft = self.collision_rect.bottomleft # new collisions
         else:
             flipped_image = pygame.transform.flip(image,True,False)
             self.image = flipped_image
-            self.rect.bottomright = self.collision_rect.bottomright #
+            self.rect.bottomright = self.collision_rect.bottomright # new collisions
 
         if self.invincible:
             alpha = self.sine_wave_value()

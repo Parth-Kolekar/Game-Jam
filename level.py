@@ -145,7 +145,7 @@ class Level:
         '''if player.on_left and (player.rect.left < self.current_x or player.direction.x >= 0):
             player.on_left = False
         if player.on_right and (player.rect.right > self.current_x or player.direction.x <= 0):
-            player.on_right = False'''
+            player.on_right = False'''  # old collisions
 
     def vertical_mov_col(self):
         player = self.player.sprite
@@ -165,7 +165,7 @@ class Level:
         if player.on_ground and player.direction.y < 0 or player.direction.y > 1:
             player.on_ground = False
         '''if player.on_ceiling and player.direction.y > 0.1:
-            player.on_ceiling = False'''
+            player.on_ceiling = False''' # old collisions
 
     def scroll_x(self):
         player = self.player.sprite
@@ -190,7 +190,7 @@ class Level:
 
     def check_win(self):
         if pygame.sprite.spritecollide(self.player.sprite, self.goal, False):
-            pygame.mixer.stop()  # Stop all currently playing sounds
+            pygame.mixer.stop()
             self.win_sound.play()
             self.create_overworld(self.current_level, self.new_max_level)            
 

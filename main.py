@@ -74,8 +74,8 @@ pygame.display.set_caption('Game Jam')
 screen = pygame.display.set_mode((screen_width,screen_height))
 
 # Loading and scaling the background image
-background_img = pygame.image.load('graphics/background/layers/grassy_mountain_combined.png').convert_alpha()
-scaled_background = pygame.transform.scale(background_img, (screen_width, screen_height))
+background_img = pygame.image.load('graphics/background/grassy_mountain_scaled.png').convert_alpha()
+#scaled_background = pygame.transform.scale(background_img, (screen_width, screen_height))
 
 # Hide the mouse cursor
 pygame.mouse.set_visible(False)
@@ -91,7 +91,8 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-    screen.blit(scaled_background,(0,0))
+    #screen.blit(scaled_background,(0,0))
+    screen.blit(background_img,(0,0))
     game.run()
     pygame.display.update()
     clock.tick(60)
