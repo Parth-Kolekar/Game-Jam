@@ -21,6 +21,7 @@ class Game:
 
     def create_level(self, current_level):
         self.level = Level(current_level, screen, self.create_overworld, self.change_health)
+        self.current_health = 100
         self.status = 'level'
         
     def create_overworld(self, current_level, new_max_level):
