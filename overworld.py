@@ -43,7 +43,7 @@ class Overworld:
         self.create_level = create_level
         self.moving = False
 
-        #Font
+        # Font
         font = pygame.font.Font('graphics/overworld/EquipmentPro.ttf', 40)
         self.loading_text = font.render('LOADING...', True, (255, 255, 255))
 
