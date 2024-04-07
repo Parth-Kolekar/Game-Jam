@@ -19,7 +19,7 @@ class Level:
         self.stomp_sound.set_volume(0.4)
 
         self.win_sound = pygame.mixer.Sound('audio/effects/win.wav')
-        self.win_sound.set_volume(0.3)
+        self.win_sound.set_volume(0.5)
 
         self.lose_sound = pygame.mixer.Sound('audio/effects/lose.wav')
         self.lose_sound.set_volume(0.3)
