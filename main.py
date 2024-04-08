@@ -69,10 +69,13 @@ class Game:
 # Pygame set up  
 pygame.init()
 pygame.display.set_caption('Game Jam')
-screen = pygame.display.set_mode((screen_width, screen_height))
 
-# Background image
+# Add "pygame.FULLSCREEN" arguement for fullscreen mode
+screen = pygame.display.set_mode((screen_width,screen_height))
+
+# Loading and scaling the background image
 background_img = pygame.image.load('graphics/background/grassy_mountain_scaled.png').convert_alpha()
+#scaled_background = pygame.transform.scale(background_img, (screen_width, screen_height))
 
 # Hide the mouse cursor
 pygame.mouse.set_visible(False)
@@ -83,21 +86,12 @@ clock = pygame.time.Clock()
 # Creating Game instance
 game = Game()
 
-# Toggle fullscreen using F key
-def toggle_fullscreen(event):
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_f:
-            if screen.get_flags() & pygame.FULLSCREEN:
-                pygame.display.set_mode((screen_width, screen_height))
-            else:
-                pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
-
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        toggle_fullscreen(event)
+    #screen.blit(scaled_background,(0,0))
     screen.blit(background_img,(0,0))
     game.run()
     pygame.display.update()
