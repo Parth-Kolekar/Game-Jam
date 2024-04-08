@@ -7,7 +7,7 @@
  <tileset firstgid="257" source="../../graphics/tiles/decorations_tileshseet.tsx"/>
  <tileset firstgid="1281" source="../../graphics/tiles/enemy_setup/enemy_setup.tsx"/>
  <tileset firstgid="1283" source="../../graphics/tiles/player_setup/player_setup.tsx"/>
- <layer id="1" name="terrain" width="65" height="11">
+ <layer id="1" name="terrain" width="65" height="11" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
