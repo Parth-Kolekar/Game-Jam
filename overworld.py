@@ -47,7 +47,6 @@ class Overworld:
         font = pygame.font.Font('graphics/overworld/EquipmentPro.ttf', 40)
         self.loading_text = font.render('LOADING...', True, (255, 255, 255))
 
-
         # Audio
         self.click_sound = pygame.mixer.Sound('audio/effects/click.wav')
         self.click_sound.set_volume(0.8)

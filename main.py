@@ -96,7 +96,6 @@ def toggle_fullscreen(event):
             else:
                 pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
             
-
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
