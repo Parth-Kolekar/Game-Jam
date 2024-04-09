@@ -9,6 +9,7 @@ from particles import ParticleEffect
 
 class Level:
     def __init__(self, current_level, surface, create_overworld, change_health):
+
         # General setup
         self.display_surface = surface
         self.world_shift = 0
@@ -36,7 +37,7 @@ class Level:
         self.goal = pygame.sprite.GroupSingle()
         self.player_setup(player_layout, change_health)
 
-        # enemy_death particles
+        # Enemy death particles
         self.enemy_death_sprites = pygame.sprite.Group()
 
         # Terrain setup
@@ -91,41 +92,25 @@ class Level:
         return sprite_group
     
     def player_setup(self, layout, change_health):
-            for row_index, row in enumerate(layout):
-                for col_index, val in enumerate(row):
-                    x = col_index * tile_size
-                    y = row_index * tile_size
+        for row_index, row in enumerate(layout):
+            for col_index, val in enumerate(row):
+                x = col_index * tile_size
+                y = row_index * tile_size
 
-                    if val == '1':
-                        sprite = Player((x, y), self.display_surface, change_health)
-                        self.player.add(sprite) 
-                    if val == '0':
-                        flag_surface = pygame.image.load('graphics/tiles/end_flag.png').convert_alpha()
-                        sprite = StaticTile(tile_size, x, y, flag_surface)
-                        self.goal.add(sprite)
+                if val == '1':
+                    sprite = Player((x, y), self.display_surface, change_health)
+                    self.player.add(sprite) 
+                if val == '0':
+                    flag_surface = pygame.image.load('graphics/tiles/end_flag.png').convert_alpha()
+                    flag_x = x  # same as tile
+                    flag_y = y + (tile_size - flag_surface.get_height())  # positioned at bottom of the goal tile
+                    sprite = StaticTile(tile_size, flag_x, flag_y, flag_surface)
+                    self.goal.add(sprite)
                     
     def enemy_collision_reverse(self):
         for enemy in self.enemy_sprites.sprites():
             if pygame.sprite.spritecollide(enemy, self.constraint_sprites, False):
                 enemy.reverse()
-
-    def setup_level(self, layout):
-        self.tiles = pygame.sprite.Group()
-        self.player = pygame.sprite.GroupSingle()
-
-        for row_index, row in enumerate(layout):
-            for col_index, cell in enumerate(row):
-                x = col_index * tile_size
-                y = row_index * tile_size
-
-                if cell == 'X':
-                    tile = Tile((x,y), tile_size)
-                    self.tiles.add(tile)
-                if cell == 'P':
-                    x = col_index * tile_size
-                    y = row_index * tile_size
-                    player_sprite = Player((x, y))
-                    self.player.add(player_sprite)
 
     def horizontal_mov_col(self):
         player = self.player.sprite
@@ -141,11 +126,6 @@ class Level:
                     player.collision_rect.right = sprite.rect.left
                     player.on_right = True
                     self.current_x = player.rect.right
-
-        '''if player.on_left and (player.rect.left < self.current_x or player.direction.x >= 0):
-            player.on_left = False
-        if player.on_right and (player.rect.right > self.current_x or player.direction.x <= 0):
-            player.on_right = False'''  # old collisions
 
     def vertical_mov_col(self):
         player = self.player.sprite
@@ -164,8 +144,6 @@ class Level:
 
         if player.on_ground and player.direction.y < 0 or player.direction.y > 1:
             player.on_ground = False
-        '''if player.on_ceiling and player.direction.y > 0.1:
-            player.on_ceiling = False''' # old collisions
 
     def scroll_x(self):
         player = self.player.sprite
@@ -205,7 +183,10 @@ class Level:
                 if enemy_top < player_bottom < enemy_center and self.player.sprite.direction.y >= 0:
                     self.stomp_sound.play()
                     self.player.sprite.direction.y = -15
-                    enemy_death_sprite = ParticleEffect(enemy.rect.center, 'enemy_death', enemy.speed)
+                    particle_effect = ParticleEffect((0, 0), 'enemy_death', enemy.speed)
+                    particle_y = enemy.rect.bottom - particle_effect.image.get_height()  # adjust for particle height
+                    particle_pos = (enemy.rect.left, particle_y)
+                    enemy_death_sprite = ParticleEffect(particle_pos, 'enemy_death', enemy.speed)
                     self.enemy_death_sprites.add(enemy_death_sprite)
                     enemy.kill()
                 else:
@@ -216,7 +197,7 @@ class Level:
         self.decoration_sprites.update(self.world_shift)
         self.decoration_sprites.draw(self.display_surface)
 
-        # End Flag
+        # End flag
         self.goal.update(self.world_shift)
         self.goal.draw(self.display_surface)
 
@@ -231,20 +212,16 @@ class Level:
         self.enemy_sprites.draw(self.display_surface)
         self.enemy_death_sprites.update(self.world_shift)
         self.enemy_death_sprites.draw(self.display_surface)
+        self.check_enemy_col()
         
-        # Player sprites
+        # Player
         self.player.draw(self.display_surface)
         self.player.update()
         self.horizontal_mov_col()
         self.vertical_mov_col()
         self.scroll_x()
 
-        # Previously end flag was placed here
-
-        # Win Loss
+        # Level end
         self.check_void_fall()
         self.check_win()
-
-        self.check_enemy_col()
-
         self.exit_level()

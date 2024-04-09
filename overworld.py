@@ -47,7 +47,6 @@ class Overworld:
         font = pygame.font.Font('graphics/overworld/EquipmentPro.ttf', 40)
         self.loading_text = font.render('LOADING...', True, (255, 255, 255))
 
-
         # Audio
         self.click_sound = pygame.mixer.Sound('audio/effects/click.wav')
         self.click_sound.set_volume(0.8)
@@ -63,6 +62,7 @@ class Overworld:
         self.space_key_image = pygame.image.load('graphics/overworld/space_key.png').convert_alpha()
         self.arrow_keys_image = pygame.image.load('graphics/overworld/arrow_keys.png').convert_alpha()
         self.enter_key_image = pygame.image.load('graphics/overworld/enter_key.png').convert_alpha()
+        self.F_key_image = pygame.image.load('graphics/overworld/F_key.png').convert_alpha()
         self.esc_key_image = pygame.image.load('graphics/overworld/esc_key.png').convert_alpha()
 
         # Time
@@ -130,15 +130,15 @@ class Overworld:
             # Space Key
             space_key_w, space_key_h = self.space_key_image.get_size()
             space_key_bot = 630
-            space_key_left = 236
+            space_key_left = 176
             space_key_top = space_key_bot - space_key_h
 
             self.display_surface.blit(self.space_key_image, (space_key_left, space_key_top))
 
-            esc_text_surface = font.render("Player jump", False, (22, 23, 26))
-            esc_text_rect = esc_text_surface.get_rect()
-            esc_text_rect.topleft = (space_key_left + space_key_w + 20, space_key_bot - space_key_h + 10)
-            self.display_surface.blit(esc_text_surface, esc_text_rect)
+            space_text_surface = font.render("Player jump", False, (22, 23, 26))
+            space_text_rect = space_text_surface.get_rect()
+            space_text_rect.topleft = (space_key_left + space_key_w + 20, space_key_bot - space_key_h + 10)
+            self.display_surface.blit(space_text_surface, space_text_rect)
 
             # Arrow Keys
             arrow_keys_w, arrow_keys_h = self.arrow_keys_image.get_size()
@@ -164,23 +164,35 @@ class Overworld:
             enter_text_rect.topleft = (enter_key_left + enter_key_w + 20, enter_key_top + (enter_key_h - enter_text_surface.get_height()) // 2)
             self.display_surface.blit(enter_text_surface, enter_text_rect)
 
-            # Esc Key
-            esc_key_w, esc_key_h = self.esc_key_image.get_size()
-            esc_key_left = enter_key_left
-            esc_key_top = enter_key_top + enter_key_h + 20
+            # F Key
+            F_key_w, F_key_h = self.F_key_image.get_size()
+            F_key_left = enter_key_left
+            F_key_top = enter_key_top + enter_key_h + 20
 
-            self.display_surface.blit(self.esc_key_image, (esc_key_left, esc_key_top))
+            self.display_surface.blit(self.F_key_image, (F_key_left, F_key_top))
+
+            F_text_surface = font.render("Toggle fullscreen", False, (22, 23, 26))
+            F_text_rect = F_text_surface.get_rect()
+            F_text_rect.topleft = (F_key_left + F_key_w + 20, F_key_top + (F_key_h - F_text_surface.get_height()) // 2)
+            self.display_surface.blit(F_text_surface, F_text_rect)
+
+            # ESC Key
+            esc_key_w, esc_key_h = self.esc_key_image.get_size()
+            esc_key_top_margin = 20
+            esc_key_left_margin = 20
+
+            self.display_surface.blit(self.esc_key_image, (esc_key_left_margin, esc_key_top_margin))
 
             esc_text_surface = font.render("Exit game", False, (22, 23, 26))
             esc_text_rect = esc_text_surface.get_rect()
-            esc_text_rect.topleft = (esc_key_left + esc_key_w + 20, esc_key_top + (esc_key_h - esc_text_surface.get_height()) // 2)
+            esc_text_rect.topleft = (esc_key_left_margin + esc_key_w + 20, esc_key_top_margin + 10)
             self.display_surface.blit(esc_text_surface, esc_text_rect)
 
             '''arrow_keys_text_length = arrow_keys_text_surface.get_width()
-            enter_text_length = enter_text_surface.get_width()
+            F_text_length = F_text_surface.get_width()
 
             print("Arrow Keys Text Length:", arrow_keys_text_length)
-            print("Enter Key Text Length:", enter_text_length)'''
+            print("F Key Text Length:", F_text_length)''' # used for finding width of key info setup
 
     def display_loading(self):
         font = pygame.font.Font('graphics/overworld/EquipmentPro.ttf', 80)
