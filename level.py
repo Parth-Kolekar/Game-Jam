@@ -91,18 +91,20 @@ class Level:
         return sprite_group
     
     def player_setup(self, layout, change_health):
-            for row_index, row in enumerate(layout):
-                for col_index, val in enumerate(row):
-                    x = col_index * tile_size
-                    y = row_index * tile_size
+        for row_index, row in enumerate(layout):
+            for col_index, val in enumerate(row):
+                x = col_index * tile_size
+                y = row_index * tile_size
 
-                    if val == '1':
-                        sprite = Player((x, y), self.display_surface, change_health)
-                        self.player.add(sprite) 
-                    if val == '0':
-                        flag_surface = pygame.image.load('graphics/tiles/end_flag.png').convert_alpha()
-                        sprite = StaticTile(tile_size, x, y, flag_surface)
-                        self.goal.add(sprite)
+                if val == '1':
+                    sprite = Player((x, y), self.display_surface, change_health)
+                    self.player.add(sprite) 
+                if val == '0':
+                    flag_surface = pygame.image.load('graphics/tiles/end_flag.png').convert_alpha()
+                    flag_x = x  # same as tile
+                    flag_y = y + (tile_size - flag_surface.get_height())  # positioned at bottom of the goal tile
+                    sprite = StaticTile(tile_size, flag_x, flag_y, flag_surface)
+                    self.goal.add(sprite)
                     
     def enemy_collision_reverse(self):
         for enemy in self.enemy_sprites.sprites():
