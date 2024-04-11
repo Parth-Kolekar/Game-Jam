@@ -7,51 +7,53 @@
 - Vedaant Nichal
 
 ## 📝 Overview:
-This project is part of our first year engineering course in Project-Based Learning (PBL), which is a part of the Savitribai Phule Pune University (SPPU) 2019 Pattern. Our team has collaborated to create a platformer game using Pygame in Python.
+This project is part of our first-year engineering course in Project-Based Learning (PBL), which is a part of the Savitribai Phule Pune University (SPPU) 2019 Pattern. Our team has collaborated to create a platformer game using Pygame in Python.
 
 ## 📖 Description:
-Our project, "Game Jam" is a platformer game developed using the Pygame library in Python. In this game, players navigate through various levels filled with obstacles, enemies, and challenges. The objective is to reach the end of each level while overcoming obstacles and defeating enemies along the way.
+Our project, "Game Jam," is an exciting platformer game developed using the Pygame library in Python. Dive into an immersive adventure as you take on the role of a brave Viking warrior traversing through five thrilling levels of challenging obstacles and enemies.
 
-## 🕹️ Features:
+Set against the backdrop of majestic mountains, each level features intricately designed platforms suspended in mid-air, creating a visually stunning environment for players to explore. As the Viking character, you must navigate through treacherous terrain, leap across gaps, and defeat enemies by jumping on their heads, Mario-style.
+
+The gameplay is simple yet engaging - reach the red flag at the end of each level to unlock the next stage of your journey. With each level presenting new challenges and obstacles, players will need to master the art of timing, precision jumping, and enemy evasion to emerge victorious.
+
+## 🛠️ Features:
 - Platformer mechanics such as jumping, moving, and collision detection
 - Multiple levels with increasing difficulty
 - Unique obstacles and enemies in each level
 
-## 🛠️ Installation:
-### Step 1: Download and Install Python
-- If you haven't already, download and install Python from the official website: [Python Downloads](https://www.python.org/downloads/)
+## ⬇️ Download and Play:
+### Step 1: Download and Extract
+- Download the "prerelease-2.zip" file from this repository.
+- Extract the contents of the zip file to a location on your computer.
 
-### Step 2: Install Pygame
-- Open a command prompt (cmd) or terminal window and execute the following command to install Pygame using pip:
-```bash
-pip install pygame
-```
-### Step 3: Download the Code
-- Download the "Game-Jam.zip" containing the game files from this repository.
+### Step 2: Run the Game
+- Navigate to the extracted folder and run the "game.exe" file to start the game.
 
-### Step 4: Run the Game
-- Navigate to the "Game-Jam" folder and open command prompt (cmd) or terminal.
-- Run the game by executing the following command:
- ```bash
-python main.py
-```
-
-## 🖥️ Usage:             
+## 🕹️ Controls:
 - Use the `←` `→` arrow keys to move the player character.
 - Press the `Spacebar` to jump.
-- Avoid obstacles and defeat enemies to progress through the levels.
-- Press `Esc` to quit.
+- Use the `←` `→` arrow keys to switch between levels.
+- Press `Enter` to select a level.
+- Press `F` to toggle fullscreen.
+- Press `Esc` to exit the game.
 
 ## 🌐 Sources:
-- Sprites: CraftPix - [craftpix.net](https://craftpix.net/freebies/assassin-mage-viking-free-pixel-art-game-heroes/?num=1&count=9&sq=viking&pos=7)
+- Player and Enemy Sprites - [craftpix.net](https://craftpix.net/freebies/assassin-mage-viking-free-pixel-art-game-heroes/?num=1&count=9&sq=viking&pos=7)
+- Backgrounds - [itch.io](https://itch.io/game-assets/free/tag-background)  
 
-- Library: Pygame - [pygame.org](https://pygame.org)
-  
 ## 📜 Licenses:
 - For licensing information regarding CraftPix assets, please visit [CraftPix File Licenses](https://craftpix.net/file-licenses/).
+- All assets used from itch.io are free to use for commercial and non-commercial projects.
 
-- Pygame is distributed under the GNU Lesser General Public License (LGPL) version 2.1 or later. [License Information](https://www.pygame.org/docs/LGPL.txt)
+
+🚨 **Note:** All assets used in the game are sourced from freely available resources and are used in compliance with their respective licenses.
 
 ## 📧 Contact:
 For inquiries or feedback, please contact us:
-- Email: parthkolekar9@gmail.com
+
+- Shubham Karkhanis:
+  - Email: shubhamkarkhanis2005@gmail.com
+  - GitHub: [shubhamkarkhanis](https://github.com/shubhamkarkhanis/Game-Jam)
+  
+- Parth Kolekar:
+  - Email: parthkolekar9@gmail.com

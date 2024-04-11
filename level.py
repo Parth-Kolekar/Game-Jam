@@ -65,30 +65,34 @@ class Level:
     def create_tile_group(self, layout, type):
         sprite_group = pygame.sprite.Group()    
 
-        for row_index, row in enumerate(layout):
-            for col_index, val in enumerate(row):
-                if val != '-1':
-                    x = col_index * tile_size
-                    y = row_index * tile_size
+        if type == 'terrain':
+            tile_layer = import_cut_graphics('graphics/tiles/ground_tilesheet.png')
+        elif type == 'decorations':
+            tile_layer = import_cut_graphics('graphics/tiles/decorations_tilesheet.png')
+        else:
+            tile_layer = None
 
-                    if type == 'terrain':
-                        terrain_tile_list = import_cut_graphics('graphics/tiles/ground_tilesheet.png')
-                        tile_surface = terrain_tile_list[int(val)].convert_alpha()
+        if type in ['terrain', 'decorations']:
+            for row_index, row in enumerate(layout):
+                for col_index, val in enumerate(row):
+                    if val != '-1' and tile_layer is not None:
+                        x = col_index * tile_size
+                        y = row_index * tile_size
+                        tile_surface = tile_layer[int(val)].convert_alpha()
                         sprite = StaticTile(tile_size, x, y, tile_surface)
+                        sprite_group.add(sprite)
+        else:
+            for row_index, row in enumerate(layout):
+                for col_index, val in enumerate(row):
+                    if val != '-1':
+                        x = col_index * tile_size
+                        y = row_index * tile_size
+                        if type == 'enemies':
+                            sprite = Enemy(tile_size, x, y)
+                        elif type == 'constraints':
+                            sprite = Tile(tile_size, x, y)
+                        sprite_group.add(sprite)
 
-                    if type == 'decorations':
-                        decorations_tile_list = import_cut_graphics('graphics/tiles/decorations_tilesheet.png')
-                        tile_surface = decorations_tile_list[int(val)].convert_alpha()
-                        sprite = StaticTile(tile_size, x, y, tile_surface)
-
-                    if type == 'enemies':
-                        sprite = Enemy(tile_size, x, y)
-
-                    if type == 'constraints':
-                        sprite = Tile(tile_size, x, y)
-                    
-                    sprite_group.add(sprite)
-        
         return sprite_group
     
     def player_setup(self, layout, change_health):
@@ -130,6 +134,12 @@ class Level:
     def vertical_mov_col(self):
         player = self.player.sprite
         player.apply_gravity()
+
+        # collision with top of the game window
+        if player.collision_rect.top <= 0:
+            player.collision_rect.top = 0
+            player.direction.y = 0
+            player.on_ceiling = True
 
         for sprite in self.terrain_sprites.sprites():
             if sprite.rect.colliderect(player.collision_rect):
@@ -183,13 +193,14 @@ class Level:
                 if enemy_top < player_bottom < enemy_center and self.player.sprite.direction.y >= 0:
                     self.stomp_sound.play()
                     self.player.sprite.direction.y = -15
-                    particle_effect = ParticleEffect((0, 0), 'enemy_death', enemy.speed)
-                    particle_y = enemy.rect.bottom - particle_effect.image.get_height()  # adjust for particle height
+                    enemy_death = ParticleEffect((0, 0), 'enemy_death', enemy.speed)
+                    particle_y = enemy.rect.bottom - enemy_death.image.get_height()  # adjust for particle height
                     particle_pos = (enemy.rect.left, particle_y)
                     enemy_death_sprite = ParticleEffect(particle_pos, 'enemy_death', enemy.speed)
                     self.enemy_death_sprites.add(enemy_death_sprite)
                     enemy.kill()
                 else:
+                    enemy.play_attack_animation()  # Add this line to trigger attack animation
                     self.player.sprite.get_damage()
 
     def run(self):
