@@ -135,7 +135,7 @@ class Level:
         player = self.player.sprite
         player.apply_gravity()
 
-        # Collide with top of the window
+        # collision with top of the game window
         if player.collision_rect.top <= 0:
             player.collision_rect.top = 0
             player.direction.y = 0
@@ -200,6 +200,7 @@ class Level:
                     self.enemy_death_sprites.add(enemy_death_sprite)
                     enemy.kill()
                 else:
+                    enemy.play_attack_animation()  # Add this line to trigger attack animation
                     self.player.sprite.get_damage()
 
     def run(self):
