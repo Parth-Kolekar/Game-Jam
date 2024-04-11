@@ -2,6 +2,7 @@ import pygame
 from game_data import levels
 import sys
 from settings import screen_width, screen_height
+import time
 
 
 class Node(pygame.sprite.Sprite):
@@ -202,6 +203,7 @@ class Overworld:
         text_rect.top -= loading_text.get_height() // 2  # y margin
         self.display_surface.blit(loading_text, text_rect)
         pygame.display.update()
+        time.sleep(1)
 
     def run(self):
         self.input_timer()
