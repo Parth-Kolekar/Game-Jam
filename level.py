@@ -183,8 +183,8 @@ class Level:
                 if enemy_top < player_bottom < enemy_center and self.player.sprite.direction.y >= 0:
                     self.stomp_sound.play()
                     self.player.sprite.direction.y = -15
-                    particle_effect = ParticleEffect((0, 0), 'enemy_death', enemy.speed)
-                    particle_y = enemy.rect.bottom - particle_effect.image.get_height()  # adjust for particle height
+                    enemy_death = ParticleEffect((0, 0), 'enemy_death', enemy.speed)
+                    particle_y = enemy.rect.bottom - enemy_death.image.get_height()  # adjust for particle height
                     particle_pos = (enemy.rect.left, particle_y)
                     enemy_death_sprite = ParticleEffect(particle_pos, 'enemy_death', enemy.speed)
                     self.enemy_death_sprites.add(enemy_death_sprite)

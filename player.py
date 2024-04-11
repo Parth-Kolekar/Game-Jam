@@ -16,7 +16,8 @@ class Player(pygame.sprite.Sprite):
         self.speed = 4
         self.gravity = 0.8
         self.jump_speed = -16
-        self.collision_rect = pygame.Rect(self.rect.topleft, (42, self.rect.height))
+        self.collision_rect = pygame.Rect(self.rect.topleft, (42, self.rect.height))  # (33, 49)) 
+
         # Player status
         self.status = 'idle'
         self.facing_right = True
