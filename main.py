@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame, sys, asyncio
 from settings import *
 from level import Level
 from overworld import Overworld
@@ -8,18 +8,18 @@ class Game:
     def __init__(self):
 
         # Game attributes
-        self.max_level = 0
+        self.max_level = 5
         self.max_health = 100
         self.current_health = 100
 
         # Audio
-        self.level_bg_music = pygame.mixer.Sound('audio/music/level_music.mp3')
+        self.level_bg_music = pygame.mixer.Sound('audio/music/level_music-converted.ogg')
         self.level_bg_music.set_volume(0.5)
 
-        self.overworld_bg_music = pygame.mixer.Sound('audio/music/overworld_music.mp3')
+        self.overworld_bg_music = pygame.mixer.Sound('audio/music/overworld_music-converted.ogg')
         self.overworld_bg_music.set_volume(0.5)
 
-        self.lose_sound = pygame.mixer.Sound('audio/effects/lose.wav')
+        self.lose_sound = pygame.mixer.Sound('audio/effects/lose-converted.ogg')
         self.lose_sound.set_volume(0.3)
 
         # Overworld creation
@@ -69,7 +69,7 @@ class Game:
 # Pygame set up  
 pygame.init()
 pygame.display.set_caption('Game Jam')
-screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((screen_width, screen_height))
 
 # Loading the background image
 background_img = pygame.image.load('graphics/background/grassy_mountain_scaled.png').convert_alpha()
@@ -85,7 +85,7 @@ game = Game()
 
 # Toggle fullscreen using F key
 def toggle_fullscreen(event):
-    click_sound = pygame.mixer.Sound('audio/effects/click.wav')
+    click_sound = pygame.mixer.Sound('audio/effects/click-converted.ogg')
     click_sound.set_volume(0.8)
     
     if event.type == pygame.KEYDOWN:
@@ -95,14 +95,18 @@ def toggle_fullscreen(event):
                 pygame.display.set_mode((screen_width, screen_height))
             else:
                 pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
-            
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        toggle_fullscreen(event)
-    screen.blit(background_img,(0,0))
-    game.run()
-    pygame.display.update()
-    clock.tick(60)
+
+async def main():           
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            toggle_fullscreen(event)
+        screen.blit(background_img,(0,0))
+        game.run()
+        pygame.display.update()
+        clock.tick(60)
+        await asyncio.sleep(0)
+
+asyncio.run(main())
