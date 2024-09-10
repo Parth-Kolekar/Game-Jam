@@ -69,7 +69,7 @@ class Game:
 # Pygame set up  
 pygame.init()
 pygame.display.set_caption('Game Jam')
-screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((screen_width, screen_height))
 
 # Loading the background image
 background_img = pygame.image.load('graphics/background/grassy_mountain_scaled.png').convert_alpha()
