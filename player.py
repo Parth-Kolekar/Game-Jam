@@ -33,10 +33,10 @@ class Player(pygame.sprite.Sprite):
         self.hurt_time = 0
 
         # Audio
-        self.jump_sound = pygame.mixer.Sound('audio/effects/jump.wav')
+        self.jump_sound = pygame.mixer.Sound('audio/effects/jump-converted.ogg')
         self.jump_sound.set_volume(0.08)
 
-        self.hurt_sound = pygame.mixer.Sound('audio/effects/hurt.mp3')
+        self.hurt_sound = pygame.mixer.Sound('audio/effects/hurt-converted.ogg')
    
     def import_character_assets(self):
         character_path = 'graphics/entities/Knight/'
