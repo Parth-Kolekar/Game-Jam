@@ -16,13 +16,13 @@ class Level:
         self.current_x = None
 
         # Audio
-        self.stomp_sound = pygame.mixer.Sound('audio/effects/stomp.ogg')
+        self.stomp_sound = pygame.mixer.Sound('audio/effects/stomp-converted.ogg')
         self.stomp_sound.set_volume(0.4)
 
-        self.win_sound = pygame.mixer.Sound('audio/effects/win.ogg')
+        self.win_sound = pygame.mixer.Sound('audio/effects/win-converted.ogg')
         self.win_sound.set_volume(0.5)
 
-        self.lose_sound = pygame.mixer.Sound('audio/effects/lose.ogg')
+        self.lose_sound = pygame.mixer.Sound('audio/effects/lose-converted.ogg')
         self.lose_sound.set_volume(0.3)
         
         # Overworld connection

@@ -8,18 +8,18 @@ class Game:
     def __init__(self):
 
         # Game attributes
-        self.max_level = 0
+        self.max_level = 5
         self.max_health = 100
         self.current_health = 100
 
         # Audio
-        self.level_bg_music = pygame.mixer.Sound('audio/music/level_music.ogg')
+        self.level_bg_music = pygame.mixer.Sound('audio/music/level_music-converted.ogg')
         self.level_bg_music.set_volume(0.5)
 
-        self.overworld_bg_music = pygame.mixer.Sound('audio/music/overworld_music.ogg')
+        self.overworld_bg_music = pygame.mixer.Sound('audio/music/overworld_music-converted.ogg')
         self.overworld_bg_music.set_volume(0.5)
 
-        self.lose_sound = pygame.mixer.Sound('audio/effects/lose.ogg')
+        self.lose_sound = pygame.mixer.Sound('audio/effects/lose-converted.ogg')
         self.lose_sound.set_volume(0.3)
 
         # Overworld creation
@@ -85,7 +85,7 @@ game = Game()
 
 # Toggle fullscreen using F key
 def toggle_fullscreen(event):
-    click_sound = pygame.mixer.Sound('audio/effects/click.ogg')
+    click_sound = pygame.mixer.Sound('audio/effects/click-converted.ogg')
     click_sound.set_volume(0.8)
     
     if event.type == pygame.KEYDOWN:
