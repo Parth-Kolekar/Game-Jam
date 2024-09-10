@@ -49,10 +49,10 @@ class Overworld:
         self.loading_text = font.render('LOADING...', True, (255, 255, 255))
 
         # Audio
-        self.click_sound = pygame.mixer.Sound('audio/effects/click-converted.ogg')
+        self.click_sound = pygame.mixer.Sound('audio/effects/click.ogg')
         self.click_sound.set_volume(0.8)
 
-        self.level_select_sound = pygame.mixer.Sound('audio/effects/level_select-converted.ogg')
+        self.level_select_sound = pygame.mixer.Sound('audio/effects/level_select.ogg')
         self.level_select_sound.set_volume(0.8)
 
         # Nodes and Cursor Sprites
