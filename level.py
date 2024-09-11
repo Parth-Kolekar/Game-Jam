@@ -135,12 +135,6 @@ class Level:
         player = self.player.sprite
         player.apply_gravity()
 
-        # collision with top of the game window
-        '''if player.collision_rect.top <= 0:
-            player.collision_rect.top = 0
-            player.direction.y = 0
-            player.on_ceiling = True'''
-
         for sprite in self.terrain_sprites.sprites():
             if sprite.rect.colliderect(player.collision_rect):
                 if player.direction.y > 0:
