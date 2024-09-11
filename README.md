@@ -21,6 +21,10 @@ The gameplay is simple yet engaging - reach the red flag at the end of each leve
 - Multiple levels with increasing difficulty
 - Unique obstacles and enemies in each level
 
+## 💻 Play Online:
+- Play Viking's Trail online on [itch.io](https://shubhamkarkhanis.itch.io/vikings-trail).
+- No need to download and run the game.
+
 ## ⬇️ Download and Play:
 ### Step 1: Download and Extract
 - Download the "prerelease-2.zip" file from this repository.
@@ -57,3 +61,4 @@ For inquiries or feedback, please contact us:
   
 - Parth Kolekar:
   - Email: parthkolekar9@gmail.com
+  - GitHub: [Parth-Kolekar](https://github.com/Parth-Kolekar/Game-Jam)
