@@ -16,13 +16,13 @@ class Level:
         self.current_x = None
 
         # Audio
-        self.stomp_sound = pygame.mixer.Sound('audio/effects/stomp.mp3')
+        self.stomp_sound = pygame.mixer.Sound('audio/effects/stomp-converted.ogg')
         self.stomp_sound.set_volume(0.4)
 
-        self.win_sound = pygame.mixer.Sound('audio/effects/win.wav')
+        self.win_sound = pygame.mixer.Sound('audio/effects/win-converted.ogg')
         self.win_sound.set_volume(0.5)
 
-        self.lose_sound = pygame.mixer.Sound('audio/effects/lose.wav')
+        self.lose_sound = pygame.mixer.Sound('audio/effects/lose-converted.ogg')
         self.lose_sound.set_volume(0.3)
         
         # Overworld connection
@@ -136,10 +136,10 @@ class Level:
         player.apply_gravity()
 
         # collision with top of the game window
-        if player.collision_rect.top <= 0:
+        '''if player.collision_rect.top <= 0:
             player.collision_rect.top = 0
             player.direction.y = 0
-            player.on_ceiling = True
+            player.on_ceiling = True'''
 
         for sprite in self.terrain_sprites.sprites():
             if sprite.rect.colliderect(player.collision_rect):
