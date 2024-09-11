@@ -57,3 +57,4 @@ For inquiries or feedback, please contact us:
   
 - Parth Kolekar:
   - Email: parthkolekar9@gmail.com
+  - - GitHub: [parthkolekar](https://github.com/Parth-Kolekar/Game-Jam)
