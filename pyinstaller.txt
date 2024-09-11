@@ -1,0 +1,1 @@
+pyinstaller --onefile --windowed --icon="graphics/game_icon.ico" main.py
